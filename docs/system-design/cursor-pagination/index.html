@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Cursor Pagination - Igor Rodrigues Wiki</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Cursor Pagination";
+        var mkdocs_page_input_path = "system-design/cursor-pagination.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Igor Rodrigues Wiki
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Python</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Python/asyncio/">AsyncIO</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ids/custom-and-sortable-ids/">Custom Sortable ID</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../timezone/">Timezone</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../encryption/simetric/">Simetric Encryption</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/cors/cors/">CORS</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">System Architecture</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/c4-model/">C4 Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/saga-pattern/">Saga Pattern</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/event-driven-architecture/">Event Driven Architecture</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">System Design</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cap-theorem/">CAP Theorem</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../APIs/rate-limit-and-throttling/">Rate Limit and Throttling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../optimistic-pessimistic-lock/">Lockings</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Cursor Pagination</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Azure</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../cloud/azure/networking/">Networking</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sys Admin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sys-admin/">index</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Messaging Systems</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Kafka</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../messaging-systems/kafka/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../messaging-systems/kafka/python-consumer/">Python Consumer</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Igor Rodrigues Wiki</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">System Design</li>
+      <li class="breadcrumb-item active">Cursor Pagination</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="cursor-based-pagination">Cursor Based Pagination</h1>
+<pre><code class="language-python">&quot;&quot;&quot;
+Usage:
+
+# First execution
+python cp.py
+
+# Next execution
+python cp.py --created_at &quot;created_at&quot; --id ID
+&quot;&quot;&quot;
+import os
+import sqlite3
+from typing import Optional
+from pprint import pprint
+
+def get_conn():
+    if os.path.exists(&quot;app.db&quot;):
+        os.remove(&quot;app.db&quot;)
+
+    conn = sqlite3.connect(&quot;app.db&quot;)
+    return conn
+
+
+conn = get_conn()
+
+
+def migration():
+    cur = conn.cursor()
+
+    cur.execute(&quot;&quot;&quot;
+        CREATE TABLE IF NOT EXISTS products (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            name TEXT,
+            price FLOAT
+        );
+    &quot;&quot;&quot;)
+
+    cur.execute(&quot;&quot;&quot;
+        INSERT INTO products (id, name, price, created_at) VALUES
+            (1,  'Gaming Mouse',      29.90, '2026-02-22 08:05:00'),
+            (2,  'Mech Keyboard',     89.90, '2026-02-22 08:42:00'),
+            (3,  'Wireless Headset',  69.00, '2026-02-22 09:18:00'),
+            (4,  'FHD Monitor 24',   179.99, '2026-02-22 09:55:00'),
+            (5,  'HD Webcam',         39.50, '2026-02-22 10:33:00'),
+            (6,  'Ultrabook 14',     999.00, '2026-02-22 11:07:00'),
+            (7,  'NVMe SSD 1TB',      79.90, '2026-02-22 11:44:00'),
+            (8,  'USB Drive 128GB',   12.90, '2026-02-22 12:26:00'),
+            (9,  'Ergo Chair',       249.00, '2026-02-23 08:03:00'),
+            (10, 'Monitor Arm',       34.90, '2026-02-23 08:41:00'),
+            (11, 'USB-C Hub',         49.90, '2026-02-23 09:22:00'),
+            (12, 'GaN Charger 65W',   39.90, '2026-02-23 10:05:00'),
+            (13, 'Smartwatch Fit',   129.00, '2026-02-23 10:48:00'),
+            (14, 'BT Speaker',        59.90, '2026-02-23 11:26:00'),
+            (15, 'USB Mic',           89.00, '2026-02-23 11:59:00')
+        ON CONFLICT(id) DO NOTHING;
+    &quot;&quot;&quot;)
+
+    conn.commit()
+
+def cursor_based_pagination(created_at: Optional[str] = None, seq_id: Optional[int] = None, limit: int = 3):
+    SQL = f&quot;SELECT id, created_at, name, price FROM products ORDER BY created_at DESC, id DESC limit {limit}&quot;
+
+    if created_at:
+        SQL = f&quot;&quot;&quot;
+        SELECT id, created_at, name, price FROM products
+        WHERE (created_at, id) &lt; ('{created_at}', {seq_id})
+        ORDER BY created_at DESC, id DESC
+        limit {limit}
+        &quot;&quot;&quot;
+
+    cursor = conn.cursor()
+    cursor.execute(SQL)
+    data_page = cursor.fetchall()
+
+    pprint(data_page)
+
+    print(&quot;Pointer to next page ===============================&quot;)
+    last_page_item = data_page[-1]
+
+    print(f&quot;created_at: {last_page_item[1]}&quot;)
+    print(f&quot;id: {last_page_item[0]}&quot;)
+    print(&quot;====================================================&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    import argparse
+
+    parser = argparse.ArgumentParser(description=&quot;Cursor params&quot;)
+
+    parser.add_argument(&quot;--created_at&quot;, default=None, help=&quot;Created timestamp&quot;)
+    parser.add_argument(&quot;--id&quot;, default=None, type=int, help=&quot;Record ID&quot;)
+
+    args = parser.parse_args()
+
+    migration()
+    cursor_based_pagination(args.created_at, args.id)
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../optimistic-pessimistic-lock/" class="btn btn-neutral float-left" title="Lockings"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../cloud/azure/networking/" class="btn btn-neutral float-right" title="Networking">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../optimistic-pessimistic-lock/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../cloud/azure/networking/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

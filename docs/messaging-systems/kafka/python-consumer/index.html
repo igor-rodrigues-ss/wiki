@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Python Consumer - Igor Rodrigues Wiki</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Python Consumer";
+        var mkdocs_page_input_path = "messaging-systems/kafka/python-consumer.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Igor Rodrigues Wiki
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Python</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../Python/asyncio/">AsyncIO</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../ids/custom-and-sortable-ids/">Custom Sortable ID</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timezone/">Timezone</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../encryption/simetric/">Simetric Encryption</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/cors/cors/">CORS</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">System Architecture</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/c4-model/">C4 Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/saga-pattern/">Saga Pattern</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/event-driven-architecture/">Event Driven Architecture</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">System Design</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../system-design/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../system-design/cap-theorem/">CAP Theorem</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../APIs/rate-limit-and-throttling/">Rate Limit and Throttling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../system-design/optimistic-pessimistic-lock/">Lockings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../system-design/cursor-pagination/">Cursor Pagination</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Azure</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../cloud/azure/networking/">Networking</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sys Admin</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sys-admin/">index</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Messaging Systems</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" >Kafka</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../">Index</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Python Consumer</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#code">Code</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Igor Rodrigues Wiki</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Messaging Systems</li>
+          <li class="breadcrumb-item">Kafka</li>
+      <li class="breadcrumb-item active">Python Consumer</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="high-throughput-python-consumer">High-Throughput Python Consumer</h1>
+<p>The diagram below shows the architecture to build a high-throughput python consumer based on asyncio, non-blocking and with only one thread.</p>
+<p><img src="../python-consumer.png" alt="Python Consumer Architecture" style="width: 100%; max-width: 800px;"></p>
+<p>This architecture was projects to be eficient and non-blocking, so, the base tools used to this implementation are <code>asyncio</code> and <a href="https://pypi.org/project/aiokafka/">aiokafka</a>.</p>
+<p>In this architecture was created 3 main concurrent tasks, that are:</p>
+<ul>
+<li>
+<p><strong>consumer</strong>: This task is responsible to always <code>poll</code> the events in kafka topic and push the event to <a href="https://docs.python.org/3/library/asyncio-queue.html">asyncio queue</a>.</p>
+</li>
+<li>
+<p><strong>workers</strong>: (Worker pool) This task is responsible for get the event from <code>queue</code>, to process the events and push the event to <code>asyncio processed queue</code>. The number of workers is configurable and we can create 1, 2 or N workers to process the events concurrently without blocking the <strong>consumer</strong> task or <strong>commit</strong> task.</p>
+</li>
+<li>
+<p><strong>commit</strong>: This task is responsible to get processed event from <code>asyncio processed queue</code> and commit the latest offset to Kafka.</p>
+</li>
+</ul>
+<p>With this architecture it is possible to consume, process and commit the messages in a concurrent way using only one thread. It allows us to process a lot of IO/bound tasks in a non-blocking way, saving lots of memory (compared to creating many threads) and using the full power of only one thread.</p>
+<h3 id="code">Code</h3>
+<pre><code class="language-python"># lifecycle.py
+import asyncio
+import signal
+
+
+class LifecycleController:
+
+    def __init__(self) -&gt; None:
+        self._shutdown = asyncio.Event()
+
+    def interrupt(self):
+        self._shutdown.set()
+
+    def is_alive(self):
+        return not self._shutdown.is_set()
+
+    async def wait(self):
+        await self._shutdown.wait()
+
+    def setup_signals(self):
+        loop = asyncio.get_running_loop()
+
+        loop.add_signal_handler(signal.SIGINT, self.interrupt)
+
+
+# consumer.py
+import asyncio
+import logging
+import uuid
+from abc import ABC, abstractmethod
+from collections import defaultdict
+from typing import Optional
+
+from aiokafka import AIOKafkaConsumer
+from aiokafka.structs import ConsumerRecord, OffsetAndMetadata, TopicPartition
+
+from config import AsyncKafkaConsumerConfig
+from lifecycle import LifecycleController
+
+logger = logging.getLogger(__name__)
+
+
+class AsyncKafkaConsumer(ABC):
+    _topic: str
+    _batch_commit: int
+    _lifecycle: LifecycleController
+    _max_concurrency: int
+
+    _config: dict
+    _consumer: AIOKafkaConsumer
+    _queue: asyncio.Queue
+    _queue_processed: asyncio.Queue
+
+    def __init__(
+        self,
+        topic: str,
+        bootstrap_servers: str,
+        group_id: Optional[str] = None,
+        batch_commit: int = AsyncKafkaConsumerConfig.BATCH_COMMIT,
+        max_concurrency: int = AsyncKafkaConsumerConfig.MAX_CONCURRENCY,
+        config: dict = {},
+    ):
+        self._topic = topic
+        self._batch_commit = batch_commit
+        self._lifecycle = LifecycleController()
+        self._max_concurrency = max_concurrency
+
+        self._queue = asyncio.Queue(maxsize=AsyncKafkaConsumerConfig.QUEUE_MAXSIZE)
+        self._queue_processed = asyncio.Queue()
+
+        self._config = AsyncKafkaConsumerConfig.DEFAULT_CONFIGS
+
+        if config:
+            self._config = config
+
+        self._config[&quot;group_id&quot;] = group_id or str(uuid.uuid4())
+        self._config[&quot;bootstrap_servers&quot;] = bootstrap_servers
+
+    @abstractmethod
+    async def process(self, msg: ConsumerRecord):
+        pass  # pragma: no cover
+
+    async def init(self):
+        pass  # pragma: no cover
+
+    async def fail(self, msg: ConsumerRecord, exc: Exception):
+        pass  # pragma: no cover
+
+    async def _init(self):
+        self._lifecycle.setup_signals()
+
+        await self.init()
+
+    async def _fail(self, msg: ConsumerRecord, exc: Exception):
+        try:
+            await self.fail(msg, exc)
+
+        except Exception as exc:
+            logger.exception(exc)
+
+    async def _task_consume(self):
+        await self._consumer.start()
+
+        while self._lifecycle.is_alive():
+            msg = await self._consumer.getone()
+            await self._queue.put(msg)
+
+    async def _task_worker(self):
+        while self._lifecycle.is_alive():
+            msg = await self._queue.get()
+
+            try:
+                await self.process(msg)
+                await self._queue_processed.put(msg)
+
+            except Exception as exc:
+                await self._fail(msg, exc)
+
+            finally:
+                self._queue.task_done()
+
+    async def _commit(self, offset_map: dict[TopicPartition, list]):
+        offsets = {}
+
+        for key, offset_list in offset_map.items():
+            last_offset = max(offset_list)
+
+            offsets[key] = OffsetAndMetadata(last_offset + 1, &quot;&quot;)
+
+        await self._consumer.commit(offsets=offsets)
+
+    async def _task_commit(self):
+        offset_map = defaultdict(list)
+        processed_count = 0
+
+        try:
+            while self._lifecycle.is_alive():
+                msg = await self._queue_processed.get()
+
+                key = TopicPartition(msg.topic, msg.partition)
+
+                offset_map[key].append(msg.offset)
+
+                processed_count += 1
+
+                if processed_count &gt;= self._batch_commit:
+                    await self._commit(offset_map)
+
+                    offset_map.clear()
+
+                    processed_count = 0
+
+                self._queue_processed.task_done()
+
+        except asyncio.CancelledError:
+            if offset_map:
+                await self._commit(offset_map)
+
+    async def _run(self):
+        self._consumer = AIOKafkaConsumer(self._topic, **self._config)
+
+        await self._init()
+
+        tasks = [asyncio.create_task(self._task_consume())]
+
+        if not self._config.get(&quot;enable_auto_commit&quot;):
+            tasks.append(asyncio.create_task(self._task_commit()))
+
+        for _ in range(self._max_concurrency):
+            tasks.append(asyncio.create_task(self._task_worker()))
+
+        try:
+            await self._lifecycle.wait()
+
+        finally:
+            logger.debug(&quot;Cleanup tasks&quot;)
+
+            self._lifecycle.interrupt()
+
+            for task in tasks:
+                task.cancel()
+
+            await asyncio.gather(*tasks, return_exceptions=True)
+
+            await self._consumer.stop()
+
+            logger.debug(&quot;Consumer completed&quot;)
+
+    async def _run_for_seconds(self, end_seconds: int):
+        try:
+            await asyncio.wait_for(self._run(), timeout=end_seconds)
+        except asyncio.TimeoutError:
+            pass
+
+    def run(self, end_seconds: Optional[int | float] = None):
+        if end_seconds:
+            asyncio.run(self._run_for_seconds(end_seconds))
+        else:
+            asyncio.run(self._run())
+
+
+# usage.py
+from consumer import AsyncKafkaConsumer
+from aiokafka.structs import ConsumerRecord
+
+
+class Consumer(AsyncKafkaConsumer):
+    counter = 0
+
+    async def process(self, msg: ConsumerRecord):
+        self.counter = msg.offset
+
+
+consumer = Consumer(&quot;test-topic&quot;, &quot;localhost:9092&quot;)
+
+consumer.run()
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Index"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

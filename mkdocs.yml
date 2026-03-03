@@ -1,0 +1,33 @@
+site_name: Igor Rodrigues Wiki
+docs_dir: wiki
+nav:
+  - Home: index.md
+  - Python:
+    - AsyncIO: Python/asyncio.md
+    - Custom Sortable ID: ids/custom-and-sortable-ids.md
+    - Timezone: timezone/index.md
+    - Simetric Encryption: encryption/simetric.md
+  - Security:
+    - Introduction: security/index.md
+    - CORS: security/cors/cors.md
+  - System Architecture:
+    - C4 Model: system-architecture/c4-model.md
+    - Saga Pattern: system-architecture/saga-pattern.md    
+    - Event Driven Architecture: system-architecture/event-driven-architecture.md
+  - System Design:
+    - Introduction: system-design/index.md
+    - CAP Theorem: system-design/cap-theorem.md
+    - Rate Limit and Throttling: APIs/rate-limit-and-throttling.md
+    - Lockings: system-design/optimistic-pessimistic-lock.md
+    - Cursor Pagination: system-design/cursor-pagination.md
+  - Cloud:
+    - Azure:
+      - Networking: cloud/azure/networking.md
+  - Sys Admin:
+    - index: sys-admin/index.md
+  - Messaging Systems:
+    - Kafka:
+      - Index: messaging-systems/kafka/index.md
+      - Python Consumer: messaging-systems/kafka/python-consumer.md
+
+theme: readthedocs
